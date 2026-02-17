@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}htmx テスト - Express{% endblock %}
+
+{% block content %}
+<h1 class="text-3xl font-bold mb-8">htmx テスト</h1>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+    {# hx-get: クリックでサーバーからデータ取得 #}
+    <div class="card bg-base-100 shadow-md">
+        <div class="card-body">
+            <h2 class="card-title">hx-get</h2>
+            <p class="text-sm text-base-content/60">ボタンクリックでサーバーから時刻を取得</p>
+            <div class="divider"></div>
+            <button
+                class="btn btn-primary"
+                hx-get="/htmx-test/time"
+                hx-target="#time-result"
+                hx-swap="innerHTML"
+            >
+                現在時刻を取得
+            </button>
+            <div id="time-result" class="mt-4 min-h-8"></div>
+        </div>
+    </div>
+
+    {# hx-post: フォーム送信 #}
+    <div class="card bg-base-100 shadow-md">
+        <div class="card-body">
+            <h2 class="card-title">hx-post</h2>
+            <p class="text-sm text-base-content/60">フォーム送信でサーバーに名前を送り、挨拶を返す</p>
+            <div class="divider"></div>
+            <form hx-post="/htmx-test/greet" hx-target="#greet-result" hx-swap="innerHTML">
+                <div class="join w-full">
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="名前を入力"
+                        class="input input-bordered join-item flex-1"
+                    />
+                    <button type="submit" class="btn btn-secondary join-item">送信</button>
+                </div>
+            </form>
+            <div id="greet-result" class="mt-4 min-h-8"></div>
+        </div>
+    </div>
+
+    {# hx-trigger: ポーリング #}
+    <div class="card bg-base-100 shadow-md">
+        <div class="card-body">
+            <h2 class="card-title">hx-trigger (polling)</h2>
+            <p class="text-sm text-base-content/60">2秒ごとにサーバーから自動取得</p>
+            <div class="divider"></div>
+            <label class="label cursor-pointer justify-start gap-3">
+                <input type="checkbox" class="toggle toggle-accent" id="polling-toggle" />
+                <span>ポーリング ON/OFF</span>
+            </label>
+            <div
+                id="polling-result"
+                class="mt-4 min-h-8"
+            ></div>
+        </div>
+    </div>
+
+    {# hx-delete: 削除デモ #}
+    <div class="card bg-base-100 shadow-md">
+        <div class="card-body">
+            <h2 class="card-title">hx-delete (swap:outerHTML)</h2>
+            <p class="text-sm text-base-content/60">要素をクリックで削除。リセットで復元。</p>
+            <div class="divider"></div>
+            <div
+                id="delete-list"
+                hx-get="/htmx-test/items"
+                hx-trigger="load"
+                hx-swap="innerHTML"
+            ></div>
+            <button
+                class="btn btn-outline btn-sm mt-4"
+                hx-get="/htmx-test/items"
+                hx-target="#delete-list"
+                hx-swap="innerHTML"
+            >
+                リセット
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    const toggle = document.getElementById('polling-toggle');
+    const target = document.getElementById('polling-result');
+    toggle.addEventListener('change', () => {
+        if (toggle.checked) {
+            target.setAttribute('hx-get', '/htmx-test/time');
+            target.setAttribute('hx-trigger', 'every 2s');
+            target.setAttribute('hx-swap', 'innerHTML');
+            htmx.process(target);
+        } else {
+            target.removeAttribute('hx-get');
+            target.removeAttribute('hx-trigger');
+            target.removeAttribute('hx-swap');
+            target.innerHTML = '';
+            htmx.process(target);
+        }
+    });
+</script>
+{% endblock %}

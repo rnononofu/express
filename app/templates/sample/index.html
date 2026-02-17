@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}サンプル - Express{% endblock %}
+
+{% block content %}
+<h1 class="text-3xl font-bold mb-8">サンプル</h1>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+    {# アラート #}
+    <div class="card bg-base-100 shadow-md">
+        <div class="card-body">
+            <h2 class="card-title">アラート</h2>
+            <div class="flex flex-col gap-2">
+                <div role="alert" class="alert alert-info"><span>情報メッセージ</span></div>
+                <div role="alert" class="alert alert-success"><span>成功メッセージ</span></div>
+                <div role="alert" class="alert alert-warning"><span>警告メッセージ</span></div>
+                <div role="alert" class="alert alert-error"><span>エラーメッセージ</span></div>
+            </div>
+        </div>
+    </div>
+
+    {# ボタン #}
+    <div class="card bg-base-100 shadow-md">
+        <div class="card-body">
+            <h2 class="card-title">ボタン</h2>
+            <div class="flex flex-wrap gap-2">
+                <button class="btn btn-primary">Primary</button>
+                <button class="btn btn-secondary">Secondary</button>
+                <button class="btn btn-accent">Accent</button>
+                <button class="btn btn-ghost">Ghost</button>
+                <button class="btn btn-outline">Outline</button>
+            </div>
+            <div class="flex flex-wrap gap-2 mt-2">
+                <button class="btn btn-sm btn-primary">Small</button>
+                <button class="btn btn-primary">Normal</button>
+                <button class="btn btn-lg btn-primary">Large</button>
+            </div>
+        </div>
+    </div>
+
+    {# バッジ #}
+    <div class="card bg-base-100 shadow-md">
+        <div class="card-body">
+            <h2 class="card-title">バッジ</h2>
+            <div class="flex flex-wrap gap-2">
+                <span class="badge">Default</span>
+                <span class="badge badge-primary">Primary</span>
+                <span class="badge badge-secondary">Secondary</span>
+                <span class="badge badge-accent">Accent</span>
+                <span class="badge badge-info">Info</span>
+                <span class="badge badge-success">Success</span>
+                <span class="badge badge-warning">Warning</span>
+                <span class="badge badge-error">Error</span>
+            </div>
+        </div>
+    </div>
+
+    {# 統計 #}
+    <div class="card bg-base-100 shadow-md">
+        <div class="card-body">
+            <h2 class="card-title">統計</h2>
+            <div class="stats shadow">
+                <div class="stat">
+                    <div class="stat-title">タスク</div>
+                    <div class="stat-value">12</div>
+                    <div class="stat-desc">実行中</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-title">成功率</div>
+                    <div class="stat-value text-success">98%</div>
+                    <div class="stat-desc">先月比 +2%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# プログレス #}
+    <div class="card bg-base-100 shadow-md">
+        <div class="card-body">
+            <h2 class="card-title">プログレス</h2>
+            <div class="flex flex-col gap-3">
+                <progress class="progress progress-primary w-full" value="70" max="100"></progress>
+                <progress class="progress progress-secondary w-full" value="40" max="100"></progress>
+                <progress class="progress progress-accent w-full" value="90" max="100"></progress>
+            </div>
+        </div>
+    </div>
+
+    {# モーダル #}
+    <div class="card bg-base-100 shadow-md">
+        <div class="card-body">
+            <h2 class="card-title">モーダル</h2>
+            <button class="btn btn-primary" onclick="sample_modal.showModal()">モーダルを開く</button>
+            <dialog id="sample_modal" class="modal">
+                <div class="modal-box">
+                    <h3 class="text-lg font-bold">モーダルタイトル</h3>
+                    <p class="py-4">モーダルの内容がここに入ります。</p>
+                    <div class="modal-action">
+                        <form method="dialog">
+                            <button class="btn">閉じる</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

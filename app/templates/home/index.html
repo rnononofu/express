@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero min-h-[70vh]">
+    <div class="hero-content text-center">
+        <div class="max-w-md">
+            <h1 class="text-5xl font-bold">Express</h1>
+            <p class="py-6">FastAPI + htmx + Tailwind CSS + DaisyUI で構築された社内ツール</p>
+            <div class="flex gap-4 justify-center">
+                <a href="/htmx-test" class="btn btn-primary">htmx テスト</a>
+                <a href="/api/data" class="btn btn-outline">API 確認</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="card bg-base-100 shadow-md">
+        <div class="card-body">
+            <h2 class="card-title">FastAPI</h2>
+            <p>高速な Python Web フレームワーク。自動 API ドキュメント付き。</p>
+        </div>
+    </div>
+    <div class="card bg-base-100 shadow-md">
+        <div class="card-body">
+            <h2 class="card-title">htmx</h2>
+            <p>HTML 属性だけでサーバー駆動の動的 UI を実現。</p>
+        </div>
+    </div>
+    <div class="card bg-base-100 shadow-md">
+        <div class="card-body">
+            <h2 class="card-title">DaisyUI</h2>
+            <p>Tailwind CSS ベースのコンポーネントライブラリ。</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
