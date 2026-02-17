@@ -10,7 +10,9 @@ wheels/
 .venv
 
 # assets
-assets/css/tailwind.css
 assets/tailwindcss.config.js
 assets/package.json
 assets/node_modules
+
+# built CSS
+app/static/css/style.css
