@@ -31,9 +31,7 @@ def time(request: Request):
 @router.post("/greet", response_class=HTMLResponse)
 def greet(request: Request, name: str = Form("")):
     ctx = {"error": "名前を入力してください"} if not name.strip() else {"name": name}
-    return templates.TemplateResponse(
-        request, "htmx_test/partials/greet.html", ctx
-    )
+    return templates.TemplateResponse(request, "htmx_test/partials/greet.html", ctx)
 
 
 @router.get("/items", response_class=HTMLResponse)

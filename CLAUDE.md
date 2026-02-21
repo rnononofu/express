@@ -24,6 +24,7 @@ uv run task dev        # 開発サーバー + CSS 監視 (同時起動)
 uv run task server     # uvicorn のみ (--reload, 0.0.0.0:8000)
 uv run task css_watch  # Tailwind CSS 監視のみ
 uv run task css_build  # Tailwind CSS 本番ビルド (--minify)
+uv run task check      # ruff リント (--fix) + フォーマット
 ```
 
 ## プロジェクト構成
